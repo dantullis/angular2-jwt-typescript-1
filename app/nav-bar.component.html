@@ -1,0 +1,10 @@
+<div class="">
+  <ul>
+    <li> <a [routerLink]="['/']">Home</a></li>
+    <li> <a [routerLink]="['/protected']">Protected Page</a></li>
+    <li> <a [routerLink]="['/parent/child']">Protected Parent/Child route</a></li>
+    <li><a *ngIf="!authService.isLoggedIn()" [routerLink]="['register']">Register</a></li>
+    <li><a *ngIf="!authService.isLoggedIn()" [routerLink]="['login']">Login</a></li>
+    <li><a *ngIf="authService.isLoggedIn()" href="/" (click)="logout()">Logout</a></li>
+  </ul>
+</div>

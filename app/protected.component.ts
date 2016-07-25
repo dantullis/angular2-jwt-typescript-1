@@ -1,9 +1,9 @@
 // base imports
-import {Component} from '@angular/core';
+import {Component} from "@angular/core";
 
 @Component({
-  selector: 'protected',
-  template: 'Protected Page'
+  selector: "protected",
+  template: "Protected Page",
 })
 
 export class ProtectedComponent {

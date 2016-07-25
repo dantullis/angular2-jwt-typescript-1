@@ -1,13 +1,14 @@
-// base imports
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {FORM_DIRECTIVES, FormBuilder, Validators, ControlGroup, NgIf} from '@angular/common';
 // custom imports
-import {AuthService} from './auth.service';
+import {AuthService} from "./auth.service";
+
+// base imports
+import {ControlGroup, FORM_DIRECTIVES, FormBuilder, NgIf, Validators} from "@angular/common";
+import {Component} from "@angular/core";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'login',
   directives: [FORM_DIRECTIVES, NgIf],
+  selector: "login",
   template: `
     <form [ngFormModel]="form" (submit)="$event.preventDefault(); onSubmit(form.value)">
       <div *ngIf="error">Check your password</div>
@@ -23,23 +24,23 @@ import {AuthService} from './auth.service';
         <button type="submit" [disabled]="!form.valid">Login</button>
       </div>
     </form>
-  `
+  `,
 })
 
 export class LoginComponent {
-  form: ControlGroup;
-  error: boolean = false;
+  private form: ControlGroup;
+  // private error: boolean = false;
   constructor(fb: FormBuilder, public authService: AuthService, public router: Router) {
     this.form = fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ["", Validators.required],
+      username: ["", Validators.required],
     });
   }
 
-  onSubmit(value: any) {
+  public onSubmit(value: any) {
     this.authService.login(value.username, value.password).subscribe((result) => {
       if (result) {
-        this.router.navigate(['home']);
+        this.router.navigate(["home"]);
       }
     });
   }

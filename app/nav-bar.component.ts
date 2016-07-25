@@ -1,13 +1,14 @@
-// base imports
-import {Component} from '@angular/core';
-import {Router, ROUTER_DIRECTIVES} from '@angular/router';
 // custom imports
-import {AuthService} from './auth.service';
+import {AuthService} from "./auth.service";
+
+// base imports
+import {Component} from "@angular/core";
+import {ROUTER_DIRECTIVES, Router} from "@angular/router";
 
 @Component({
-  selector: 'nav-bar',
   directives: [ROUTER_DIRECTIVES],
-  templateUrl: 'app/nav-bar.component.html'
+  selector: "nav-bar",
+  templateUrl: "app/nav-bar.component.html",
 })
 
 export class NavBarComponent {
@@ -16,13 +17,13 @@ export class NavBarComponent {
     this.router = router;
   }
 
-  getLoggedIn() {
+  public getLoggedIn() {
     return this.authService.isLoggedIn();
   }
 
-  logout() {
+  public logout() {
     this.authService.logout();
-    this.router.navigate(['']);
+    this.router.navigate([""]);
     return false;
   }
 }

@@ -1,14 +1,15 @@
 // base imports
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {FORM_DIRECTIVES, FormBuilder, Validators, ControlGroup, NgIf} from '@angular/common';
-import {Http, Headers} from '@angular/http';
+import {ControlGroup, FORM_DIRECTIVES, FormBuilder, NgIf, Validators} from "@angular/common";
+import {Component} from "@angular/core";
+// import {Headers, Http} from "@angular/http";
+import {Router} from "@angular/router";
+
 // custom imports
-import {RegisterService} from './register.service';
+import {RegisterService} from "./register.service";
 
 @Component({
-  selector: 'register',
   directives: [FORM_DIRECTIVES, NgIf],
+  selector: "register",
   template: `
     <form [ngFormModel]="form" (submit)="$event.preventDefault(); onSubmit(form.value)">
       <div *ngIf="error">Check your password</div>
@@ -28,26 +29,26 @@ import {RegisterService} from './register.service';
         <button type="submit" [disabled]="!form.valid">Register</button>
       </div>
     </form>
-  `
+  `,
 })
 
 export class RegisterComponent {
-  form: ControlGroup;
-  error: boolean = false;
-  registered: boolean = false;
+  private form: ControlGroup;
+  // private error: boolean = false;
+  private registered: boolean = false;
 
   constructor(fb: FormBuilder, public registerService: RegisterService, public router: Router) {
     this.form = fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ["", Validators.required],
+      username: ["", Validators.required],
     });
   }
 
-  onSubmit(value: any) {
+  public onSubmit(value: any) {
     this.registerService.regUser(value.username, value.password).subscribe((result) => {
       if (result) {
         this.registered = true;
-        this.router.navigate(['home']);
+        this.router.navigate(["home"]);
       }
     });
   }

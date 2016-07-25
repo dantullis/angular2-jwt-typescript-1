@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "htmlhint" : "htmlhint --config .htmlhintrc **/*.html",
     "lite": "lite-server",
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
+    "tslint" : "tslint -c tslint.json app/**/*.ts",
     "typings": "typings"
   },
   "license": "ISC",
